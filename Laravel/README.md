@@ -127,6 +127,7 @@ Iniciar projeto `$ sail`
 ```bash
 $ cd example-app
 $ sail up
+$ sail artisan migrate
 ```
 
 
@@ -213,15 +214,6 @@ Route::get('/hello/{name?}', [\App\Http\Controllers\HelloController::class, 'hel
 
 
 
-### Controller
-Os controllers ficam na pasta `app/Http/Controllers/`
-```bash
-$ sail artisan make:controller --help
-$ sail artisan make:controller WelcomeController
-```
-
-
-
 ### Migrations
 as migrations ficam na pasta `database/migrations`
 ```bash
@@ -233,11 +225,26 @@ $ sail artisan migrate
 
 
 
+### Controller
+Os controllers ficam na pasta `app/Http/Controllers/`
+```bash
+$ sail artisan make:controller --help
+$ sail artisan make:controller WelcomeController
+
+# Parametro --resource cria um resource controller
+$ sail artisan make:controller NoteController --resource
+```
+
+
+
 ### Model
 Os controllers ficam na pasta `app/Models`
 ```bash
 $ sail artisan make:model --help
 $ sail artisan make:model Student
+
+# Parametro -m cria a Migration
+$ sail artisan make:model Note -m 
 ```
 
 
@@ -287,6 +294,19 @@ $ php artisan make:controller HelloController
 
 
 ### Packages
+Pacotes do Laravel:
+```
+> laravel-breeze
+> Descrição: recursos de autenticação
+> Documentação: https://laravel.com/docs/11.x/starter-kits#laravel-breeze
+> Instalação:
+> `$ (sail) composer require laravel/breeze --dev`
+> `$ (sail) artisan breeze:install`
+> `$ npm install`
+> `$ npm run dev`
+```
+
+
 Pacotes externos, feitos pela comunidade:
 ```
 > laravel-debugbar
