@@ -220,6 +220,10 @@ as migrations ficam na pasta `database/migrations`
 $ sail artisan make:migration --help
 $ sail artisan make:migration create_students_table
 
+# Executa a func down da migration
+$ sail artisan migrate:rollback
+
+# Executa a func up da migration
 $ sail artisan migrate
 ```
 
