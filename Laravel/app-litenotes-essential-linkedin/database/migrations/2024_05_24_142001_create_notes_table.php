@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            // Cria um slug
+            $table->uuid('uuid');
             // Cria chave estrangeira, tabela user, campo id
             $table->foreignId('user_id')->constrained();
             $table->string('title');
