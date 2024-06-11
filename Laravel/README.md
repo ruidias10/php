@@ -132,10 +132,11 @@ $ cd example-app
 $ php artisan serve
 ```
 
-### Criar e executar projeto `$ curl`
+### Criar e executar projeto `$ curl` (docker e sail)
 Criar projeto através `$ curl`
 ```bash
 $ curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
+$ curl -s "https://laravel.build/mygym?with=mysql,redis" | bash
 ```
 
 Iniciar projeto `$ sail`
@@ -333,7 +334,7 @@ class User {
 }
 
 class Note {
-  public function user() {
+  public function user() {8080
     return $this->belongsTo(User::class); // relacionamento 1:1
   }
 }
