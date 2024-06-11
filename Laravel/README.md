@@ -1,11 +1,21 @@
 # LARAVEL
 
+**Courses:**
+- https://www.linkedin.com/learning/laravel-9-0-essential-training/
+
+**Exercise Files on GitHub:**
+- https://github.com/LinkedInLearning/laravel-9-essential-training-3007804
+
+
+
 ## Table of Contents
 1. Introduction
     1. Docker
     2. Sail
     3. Editor
     4. Laravel
+    5. Eloquent
+    6. Packages
 
 
 
@@ -43,13 +53,18 @@ $ systemctl daemon-reload
 
 
 
-## 02 - Laravel sail
+## 02 - Sail
 ```bash
 $ nano ~/.zshrc
 
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 $ sail ps -a
+
+$ sail up
+$ sail up -d
+
+$ sail down
 
 $ sail shell
 $ sail root-shell
@@ -127,6 +142,7 @@ Iniciar projeto `$ sail`
 ```bash
 $ cd example-app
 $ sail up
+$ sail up -d
 $ sail artisan migrate
 ```
 
@@ -225,6 +241,9 @@ $ sail artisan migrate:rollback
 
 # Executa a func up da migration
 $ sail artisan migrate
+
+$ sail artisan make:migration add_soft_deletes_to_notes
+$ sail artisan migrate
 ```
 
 
@@ -297,7 +316,65 @@ $ php artisan make:controller HelloController
 
 
 
-### Packages
+## 05 - Eloquent
+
+### Relationship
+#### One to one
+  - Relationship 1:1.
+  - Um ```User``` pode ter uma ```hasOne``` ```Note```
+  - Uma ```Note``` pertence ```belongsTo``` a um ```User```
+
+```php
+class User {
+  // temos acesso a note e ao user dono da nota
+  public function note() {
+    return $this->hasOne(Note::class); // relacionamento 1:1
+  }
+}
+
+class Note {
+  public function user() {
+    return $this->belongsTo(User::class); // relacionamento 1:1
+  }
+}
+```
+
+
+#### One to many
+  - Relationship 1:N. 
+  - Um ```User``` pode ter várias ```hasMany``` ```Notes```
+  - Uma ```Note``` pertence ```belongsTo``` a um ```User```
+
+```php
+class User {
+  // temos acesso as notes e ao user dono da nota
+  public function notes() {
+    return $this->hasMany(Note::class); // relacionamento 1:N
+  }
+}
+
+class Note {
+  public function user() {
+    return $this->belongsTo(User::class); // relacionamento N:1
+  }
+}
+```
+
+#### One of many
+  - relationship 1:N
+
+#### Many to many
+  - relationship N:N
+
+#### Custom types    
+  - relationship N:N
+
+
+
+
+
+
+## 06 - Packages
 Pacotes do Laravel:
 ```
 > laravel-breeze
